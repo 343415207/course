@@ -1,0 +1,45 @@
+<!--pages/course-detail/course-detail.wxml-->
+<view class="container">
+  <!-- 记录列表 -->
+  <view class="records-list">
+    <view wx:if="{{loading && records.length === 0}}" class="loading">
+      <text>加载中...</text>
+    </view>
+    <view wx:elif="{{records.length === 0}}" class="empty">
+      <text>暂无记录</text>
+    </view>
+    <view wx:else>
+      <view 
+        class="record-item" 
+        wx:for="{{records}}" 
+        wx:key="id"
+      >
+        <view class="record-content">
+          <view class="record-note">
+            {{item.note}}
+          </view>
+          <view class="record-time">{{formatTime(item.createdAt)}}</view>
+        </view>
+        <view class="record-actions">
+          <button 
+            class="delete-btn" 
+            data-id="{{item.id}}"
+            catchtap="onDeleteRecord"
+            size="mini"
+            type="warn"
+          >
+            删除
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 新增记录按钮 -->
+  <view class="add-record-btn-container">
+    <view class="add-record-btn" catchtap="onAddRecord">
+      <text class="add-record-icon">+</text>
+    </view>
+  </view>
+</view>
+

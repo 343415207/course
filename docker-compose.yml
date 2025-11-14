@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # MySQL 数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: course_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "9306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - course_network
+
+  # phpMyAdmin 数据库管理工具
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: course_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "9080:80"
+    depends_on:
+      - mysql
+    networks:
+      - course_network
+
+  # Node.js 后端服务
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: course_api
+    restart: always
+    ports:
+      - "9000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME}
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+      - WX_APPID=${WX_APPID}
+      - WX_SECRET=${WX_SECRET}
+      - COS_SECRET_ID=${COS_SECRET_ID}
+      - COS_SECRET_KEY=${COS_SECRET_KEY}
+      - COS_REGION=${COS_REGION}
+      - COS_BUCKET_NAME=${COS_BUCKET_NAME}
+      - COS_BUCKET_URL=${COS_BUCKET_URL}
+      - COS_BASE_PATH=${COS_BASE_PATH}
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - mysql
+    networks:
+      - course_network
+
+volumes:
+  mysql_data:
+
+networks:
+  course_network:
+    driver: bridge
+

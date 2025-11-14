@@ -1,0 +1,200 @@
+# Cursor AI 规则文件
+
+## 项目概述
+
+这是一个课程记录管理小程序项目，包含：
+- **前端**: 微信小程序（原生框架）
+- **后端**: Node.js + Express + MySQL + Sequelize
+- **容器化**: Docker + Docker Compose
+- **存储**: 腾讯云COS
+
+## 技术栈规范
+
+### 后端
+- **框架**: Express.js
+- **ORM**: Sequelize
+- **数据库**: MySQL 8.0+
+- **认证**: JWT (jsonwebtoken)
+- **文件上传**: multer + 腾讯云COS SDK
+- **HTTP客户端**: Axios
+
+### 前端
+- **框架**: 微信小程序原生框架
+- **HTTP请求**: 使用封装的 wx.request
+- **状态管理**: 全局变量或简单状态管理
+
+## 代码规范
+
+### 文件命名
+- **后端**: 使用 camelCase（如 `authController.js`）
+- **前端**: 使用 kebab-case（如 `course-detail.js`）
+- **配置文件**: 使用小写（如 `database.js`）
+
+### 代码风格
+- 使用 ES6+ 语法
+- 使用 async/await 处理异步操作
+- 使用 const/let，避免 var
+- 函数和变量使用有意义的命名
+
+### 目录结构
+- 严格按照项目结构组织代码
+- 控制器、模型、路由分离
+- 工具函数放在 utils 目录
+
+## 数据库规范
+
+### 表命名
+- 使用复数形式（如 `users`, `courses`, `records`）
+- 使用下划线命名（如 `created_at`, `updated_at`）
+
+### 字段规范
+- 主键统一使用 `id`
+- 时间字段使用 `created_at`, `updated_at`
+- 外键使用 `表名_id` 格式（如 `user_id`, `course_id`）
+
+### Sequelize 模型
+- 模型文件名使用 PascalCase（如 `User.js`）
+- 模型名使用单数形式（如 `User`, `Course`）
+
+## API 规范
+
+### 路由命名
+- 使用 RESTful 风格
+- 资源使用复数形式（如 `/api/courses`, `/api/records`）
+- 嵌套资源使用路径参数（如 `/api/courses/:courseId/records`）
+
+### 响应格式
+- 成功响应返回数据对象或数组
+- 错误响应返回 `{ error: "错误信息", code: "错误代码" }`
+- 使用标准 HTTP 状态码
+
+### 认证
+- 所有接口（除登录外）需要 JWT Token
+- Token 通过 `Authorization: Bearer {token}` 传递
+
+## 权限控制
+
+### 用户权限
+- 普通用户只能查看和操作自己的数据
+- 管理员可以管理所有内容
+- 使用中间件进行权限验证
+
+### 数据验证
+- 所有用户输入必须验证
+- 使用 Sequelize 验证或自定义验证
+- 防止 SQL 注入（使用 ORM）
+
+## 错误处理
+
+### 统一错误处理
+- 使用错误处理中间件
+- 返回友好的错误信息
+- 记录错误日志
+
+### 异常捕获
+- 使用 try-catch 捕获异步错误
+- Promise 使用 .catch() 处理错误
+
+## 文件上传
+
+### 图片上传
+- 上传到腾讯云COS
+- 支持格式：jpg, jpeg, png, gif
+- 限制文件大小
+- 返回完整的图片URL
+
+## Docker 规范
+
+### 容器命名
+- 使用 `course_` 前缀（如 `course_api`, `course_mysql`）
+
+### 网络配置
+- 所有服务在 `course_network` 网络中
+- 通过服务名访问（如 `mysql:3306`）
+
+### 数据持久化
+- MySQL 数据使用 volume 持久化
+- 代码通过 volume 挂载实现热更新
+
+## 开发流程
+
+### 开发顺序
+1. 先开发后端接口
+2. 再开发前端页面
+3. 最后进行联调
+
+### 测试
+- 后端接口需要测试
+- 前端功能需要测试
+- 前后端联调测试
+
+## 文档规范
+
+### 代码注释
+- 函数和类需要注释说明
+- 复杂逻辑需要注释
+- 使用 JSDoc 格式注释
+
+### 文档位置
+- 项目文档在 `docs/` 目录
+- API 文档在 `docs/api/`
+- 配置文档在 `docs/config/`
+
+## 环境配置
+
+### 环境变量
+- 所有配置通过 `.env` 文件管理
+- 不要硬编码敏感信息
+- `.env` 文件不要提交到版本控制
+
+### 数据库连接
+- Docker 环境使用服务名 `mysql`
+- 本地开发使用 `localhost`
+
+## 注意事项
+
+1. **安全性**
+   - 不要暴露敏感信息
+   - 使用 HTTPS（生产环境）
+   - 验证用户输入
+   - 防止 SQL 注入
+
+2. **性能**
+   - 数据库查询优化
+   - 使用索引
+   - 图片压缩上传
+   - 列表分页加载
+
+3. **用户体验**
+   - 加载状态提示
+   - 错误提示友好
+   - 操作反馈及时
+
+4. **代码质量**
+   - 保持代码简洁
+   - 避免重复代码
+   - 使用有意义的变量名
+   - 及时清理无用代码
+
+## 常用命令
+
+### Docker
+- `docker-compose up -d`: 启动服务
+- `docker-compose down`: 停止服务
+- `docker-compose logs -f api`: 查看日志
+- `docker-compose exec api sh`: 进入容器
+
+### 数据库
+- 使用 phpMyAdmin 管理：`http://localhost:9080`
+- 或使用 Sequelize CLI 迁移
+
+## 参考文档
+
+- 项目文档：`docs/README.md`
+- 后端文档：`docs/backend/README.md`
+- 前端文档：`docs/frontend/README.md`
+- API 文档：`docs/api/README.md`
+- 数据库文档：`docs/database/README.md`
+- 配置文档：`docs/config/README.md`
+- Docker 文档：`docs/docker/README.md`
+

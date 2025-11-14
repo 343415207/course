@@ -1,0 +1,159 @@
+/* pages/record-detail/record-detail.wxss */
+.container {
+  padding: 24rpx;
+}
+
+.record-info {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+}
+
+.record-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 32rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+/* 备注区域 */
+.note-section {
+  margin-bottom: 32rpx;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.note-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-btn {
+  font-size: 24rpx;
+  color: #3cc51f;
+}
+
+.note-content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  min-height: 60rpx;
+}
+
+.note-placeholder {
+  color: #999;
+}
+
+.note-edit {
+  margin-top: 16rpx;
+}
+
+.note-input {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 16rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+}
+
+.btn-cancel, .btn-save {
+  padding: 12rpx 32rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.btn-cancel {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.btn-save {
+  background-color: #3cc51f;
+  color: #fff;
+}
+
+/* 图片区域 */
+.images-section {
+  margin-top: 32rpx;
+  padding-top: 32rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.images-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.images-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.add-image-btn {
+  font-size: 24rpx;
+  color: #3cc51f;
+}
+
+.empty-images {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+.image-delete {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #ff4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+

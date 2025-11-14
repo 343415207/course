@@ -1,0 +1,74 @@
+<!--pages/record-detail/record-detail.wxml-->
+<view class="container">
+  <!-- 记录信息 -->
+  <view class="record-info">
+    <view class="record-time">
+      <text>创建时间：{{formatTime(record.createdAt)}}</text>
+    </view>
+
+    <!-- 备注编辑 -->
+    <view class="note-section">
+      <view class="note-header">
+        <text class="note-label">备注</text>
+        <text wx:if="{{!editingNote}}" class="edit-btn" bindtap="onEditNote">编辑</text>
+      </view>
+      
+      <view wx:if="{{editingNote}}" class="note-edit">
+        <textarea 
+          class="note-input" 
+          value="{{note}}" 
+          placeholder="请输入备注"
+          bindinput="onNoteInput"
+          maxlength="500"
+        />
+        <view class="note-actions">
+          <button class="btn-cancel" bindtap="onCancelEdit">取消</button>
+          <button class="btn-save" bindtap="onSaveNote">保存</button>
+        </view>
+      </view>
+      
+      <view wx:else class="note-content">
+        <text wx:if="{{note}}">{{note}}</text>
+        <text wx:else class="note-placeholder">暂无备注</text>
+      </view>
+    </view>
+
+    <!-- 图片列表 -->
+    <view class="images-section">
+      <view class="images-header">
+        <text class="images-label">图片</text>
+        <text class="add-image-btn" bindtap="onChooseImage">+ 添加图片</text>
+      </view>
+      
+      <view wx:if="{{images.length === 0}}" class="empty-images">
+        <text>暂无图片</text>
+      </view>
+      
+      <view wx:else class="images-grid">
+        <view 
+          class="image-item" 
+          wx:for="{{images}}" 
+          wx:key="id"
+          wx:for-item="img"
+        >
+          <image 
+            src="{{img.imageUrl || img}}" 
+            mode="aspectFill" 
+            class="image"
+            data-url="{{img.imageUrl || img}}"
+            bindtap="onPreviewImage"
+          />
+          <view 
+            class="image-delete" 
+            data-imageid="{{img.id}}"
+            data-imageurl="{{img.imageUrl || img}}"
+            bindtap="onDeleteImage"
+          >
+            <text>×</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

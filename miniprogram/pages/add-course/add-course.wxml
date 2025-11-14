@@ -1,0 +1,28 @@
+<!--pages/add-course/add-course.wxml-->
+<view class="container">
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">课程名称</view>
+      <input 
+        class="form-input" 
+        type="text" 
+        placeholder="请输入课程名称（最多10个字符）"
+        value="{{courseName}}"
+        maxlength="10"
+        bindinput="onInput"
+      />
+      <view class="form-tip">最多10个字符</view>
+    </view>
+  </view>
+
+  <view class="submit-section">
+    <button 
+      class="submit-btn" 
+      bindtap="onSubmit"
+      disabled="{{loading || !courseName}}"
+    >
+      {{loading ? '创建中...' : '创建课程'}}
+    </button>
+  </view>
+</view>
+

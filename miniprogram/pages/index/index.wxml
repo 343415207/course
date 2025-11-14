@@ -1,0 +1,62 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- Banner轮播图 -->
+  <swiper 
+    class="banner-swiper" 
+    indicator-dots="{{true}}" 
+    autoplay="{{true}}" 
+    interval="{{3000}}" 
+    duration="{{500}}"
+    bindtap="onBannerTap"
+  >
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image 
+        src="{{item.imageUrl}}" 
+        mode="aspectFill" 
+        class="banner-image"
+        lazy-load="{{true}}"
+        binderror="onBannerImageError"
+        data-index="{{index}}"
+      />
+    </swiper-item>
+  </swiper>
+
+  <!-- 课程列表 -->
+  <view class="courses-section">
+    <view wx:if="{{loading && courses.length === 0}}" class="loading">
+      <text>加载中...</text>
+    </view>
+    <view wx:elif="{{courses.length === 0}}" class="empty">
+      <text>暂无课程</text>
+    </view>
+    <view wx:else class="courses-grid">
+      <view 
+        class="course-card" 
+        wx:for="{{courses}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        data-name="{{item.name}}"
+        bindtap="onCourseTap"
+      >
+        <view class="course-name">{{item.name}}</view>
+        <view class="course-info">
+          <view wx:if="{{item.lastRecordTimeText}}" class="course-time-wrapper">
+            <text class="course-time">最近: {{item.lastRecordTimeText}}</text>
+          </view>
+          <view wx:elif="{{item.totalCount === 0}}" class="course-time-wrapper">
+            <text class="course-time">暂无记录</text>
+          </view>
+          <text class="course-count">共{{item.totalCount || 0}}次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加课程按钮 -->
+  <view class="add-course-btn-container">
+    <view class="add-course-btn" bindtap="onAddCourse">
+      <text class="add-course-icon">+</text>
+    </view>
+  </view>
+</view>
+

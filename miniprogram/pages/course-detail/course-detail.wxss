@@ -1,0 +1,93 @@
+/* pages/course-detail/course-detail.wxss */
+.container {
+  padding-bottom: 160rpx;
+}
+
+.records-list {
+  padding: 24rpx;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 记录项 */
+.record-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-content {
+  flex: 1;
+}
+
+.record-note {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 12rpx;
+  word-break: break-all;
+}
+
+.record-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.record-actions {
+  margin-left: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.delete-btn {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-size: 24rpx;
+  min-width: 80rpx;
+  height: 56rpx;
+  border-radius: 8rpx;
+}
+
+/* 新增记录按钮 */
+.add-record-btn-container {
+  position: fixed;
+  bottom: 40rpx;
+  right: 40rpx;
+  z-index: 100;
+}
+
+.add-record-btn {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #3cc51f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(60, 197, 31, 0.4);
+  transition: transform 0.2s;
+}
+
+.add-record-btn:active {
+  background-color: #2ea816;
+  transform: scale(0.95);
+}
+
+.add-record-icon {
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: bold;
+  line-height: 1;
+}
+

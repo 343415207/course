@@ -1,0 +1,120 @@
+/* pages/index/index.wxss */
+.container {
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/* Banner轮播图 */
+.banner-swiper {
+  width: 100%;
+  height: 400rpx;
+  margin-bottom: 24rpx;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 课程列表区域 */
+.courses-section {
+  padding: 0 24rpx 24rpx 24rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  color: #333;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 课程网格 */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+
+/* 课程卡片 */
+.course-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.course-card:active {
+  transform: scale(0.98);
+}
+
+.course-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.course-time-wrapper {
+  display: block;
+}
+
+.course-time {
+  color: #666;
+  display: block;
+}
+
+.course-count {
+  color: #3cc51f;
+}
+
+/* 添加课程按钮 */
+.add-course-btn-container {
+  position: fixed;
+  bottom: 40rpx;
+  right: 40rpx;
+  z-index: 100;
+}
+
+.add-course-btn {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #3cc51f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(60, 197, 31, 0.4);
+  transition: transform 0.2s;
+}
+
+.add-course-btn:active {
+  background-color: #2ea816;
+  transform: scale(0.95);
+}
+
+.add-course-icon {
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: bold;
+  line-height: 1;
+}
+
